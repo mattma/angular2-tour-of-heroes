@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router-deprecated';
 import { HeroDetailComponent } from './hero-detail.component';
 import { Hero } from './models/hero';
 import { HeroService } from './hero.service';
@@ -7,11 +8,7 @@ import { HeroService } from './hero.service';
   moduleId: module.id,
   selector: 'hero-app',
   directives: [HeroDetailComponent],
-  providers: [HeroService],
   template: `
-    <h1>
-      {{title}}
-    </h1>
     <h2>My Heroes</h2>
     <ul class="heroes">
       <li *ngFor="let hero of heroes | async" (click)="onSelect(hero)"
@@ -19,12 +16,15 @@ import { HeroService } from './hero.service';
         <span class="badge">{{hero.id}}</span> {{hero.name}}
       </li>
     </ul>
-    <app-hero-detail [hero]="selectHero"></app-hero-detail>
+  
+    <div *ngIf="selectHero">
+      <h2>{{selectHero.name | uppercase}} is my hero</h2>
+      <button (click)="goToDetail(selectHero)">View Details</button>
+    </div>
   `,
   styleUrls: ['hero.component.css']
 })
 export class HeroAppComponent implements OnInit {
-  title: string = 'Tour of Heroes';
   public heroes: Promise<Array<Hero>>;
   selectHero: Hero;
   hero: Hero = {
@@ -32,17 +32,23 @@ export class HeroAppComponent implements OnInit {
     name: 'Windstorm'
   };
 
-  constructor(private heroService: HeroService) { }
+  constructor (private heroService: HeroService, private router: Router) {
+  }
 
-  ngOnInit(): void {
+  ngOnInit (): void {
     this.getHeroes();
   }
 
-  getHeroes(): void {
+  getHeroes (): void {
     this.heroes = this.heroService.getHeroes();
   }
 
-  onSelect (hero): void {
+  onSelect (hero: Hero): void {
     this.selectHero = hero;
+  }
+
+  goToDetail(hero: Hero): void {
+    const link = ['HeroDetail', {id: hero.id}];
+    this.router.navigate(link);
   }
 }

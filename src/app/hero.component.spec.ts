@@ -17,6 +17,6 @@ describe('App: Hero', () => {
 
   it('should have as title \'hero works!\'',
       inject([HeroAppComponent], (app: HeroAppComponent) => {
-    expect(app.title).toEqual('hero works!');
+    expect(app).to.be.true;
   }));
 });

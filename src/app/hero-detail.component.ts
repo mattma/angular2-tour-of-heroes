@@ -1,10 +1,11 @@
-import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { RouteParams } from '@angular/router-deprecated';
+import { HeroService } from './hero.service';
 import { Hero } from './models/hero';
 
 @Component({
   moduleId: module.id,
   selector: 'app-hero-detail',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div *ngIf="hero">    
       <h2>
@@ -17,10 +18,25 @@ import { Hero } from './models/hero';
         <label>name:</label>
         <input type="text" placeholder="name" [(ngModel)]="hero.name">
       </div>
+      <button (click)="goBack()">Back</button>
     </div>
   `,
-  styles: []
+  styleUrls: ['./hero-detail.component.css']
 })
-export class HeroDetailComponent {
-  @Input() hero: Hero;
+export class HeroDetailComponent implements OnInit {
+  hero: Hero;
+
+  constructor (private heroService: HeroService,
+               private routeParams: RouteParams) {
+  }
+
+  ngOnInit () {
+    const id = +this.routeParams.get('id');
+    this.heroService.getHero(id)
+      .then((hero: Hero)=> this.hero = hero);
+  }
+
+  goBack() {
+    window.history.back();
+  }
 }
