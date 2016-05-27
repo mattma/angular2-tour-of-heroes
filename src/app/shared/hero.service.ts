@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Http, Response, Headers } from '@angular/http';
-import { Hero } from '../models/hero';
+import { Hero } from './hero';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mapTo';
 

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router-deprecated';
 import {Observable} from 'rxjs/Observable';
 import { HeroService } from '../shared/hero.service';
-import { Hero } from '../models/hero';
+import { Hero } from '../shared/hero';
 import 'rxjs/add/operator/map';
 
 @Component({
