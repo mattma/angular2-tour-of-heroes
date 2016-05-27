@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Response } from '@angular/http';
 import { Router } from '@angular/router-deprecated';
+import { Observable } from 'rxjs/Observable';
 import { HeroDetailComponent } from './hero-detail.component';
 import { Hero } from './models/hero';
 import { HeroService } from './hero.service';
+import 'rxjs/add/operator/map';
 
 @Component({
   moduleId: module.id,
@@ -31,7 +33,7 @@ import { HeroService } from './hero.service';
   styleUrls: ['hero.component.css']
 })
 export class HeroAppComponent implements OnInit {
-  public heroes: Promise<Array<Hero>>;
+  heroes: Observable<Array<Hero>>;
   selectHero: Hero;
   addingHero: boolean = false;
   error: any;
@@ -59,16 +61,13 @@ export class HeroAppComponent implements OnInit {
     event.stopPropagation();
 
     this.heroService.delete(hero)
-      .then((res: Response) => {
-        this.heroes = this.heroes
-          .then(_heroes => _heroes.filter((_hero: Hero) => _hero !== hero));
-
-        console.log('this.heroes: ', this.heroes);
+      .subscribe(() => {
+        this.heroes = this.heroes.map((heroes: Array<Hero>) =>
+          heroes.filter((h: Hero) => h !== hero));
         if (this.selectHero === hero) {
           this.selectHero = null;
         }
-      })
-      .catch((err: Error) => this.error = err);
+      });
   }
 
   getHeroes (): void {

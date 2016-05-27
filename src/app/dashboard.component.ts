@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router-deprecated';
+import {Observable} from 'rxjs/Observable';
 import { HeroService } from './hero.service';
 import { Hero } from './models/hero';
+import 'rxjs/add/operator/map';
 
 @Component({
   moduleId: module.id,
@@ -19,7 +21,7 @@ import { Hero } from './models/hero';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  heroes: Promise<Array<Hero>>;
+  heroes: Observable<Array<Hero>>;
 
   constructor (private heroService: HeroService, private router: Router) {
   }
@@ -31,7 +33,7 @@ export class DashboardComponent implements OnInit {
   getHeroes (): void {
     // cherry-pick four heroes (2nd, 3rd, 4th, and 5th) with slice
     this.heroes = this.heroService.getHeroes()
-      .then((heroes: Array<Hero>) => heroes.slice(1, 5));
+      .map((heroes: Array<Hero>) => heroes.slice(1,5));
   }
 
   gotoDetail (hero: Hero): void {

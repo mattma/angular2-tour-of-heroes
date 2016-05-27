@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { RouteParams } from '@angular/router-deprecated';
+import {Observable} from 'rxjs/Observable';
 import { HeroService } from './hero.service';
 import { Hero } from './models/hero';
 
@@ -26,7 +27,6 @@ import { Hero } from './models/hero';
 })
 export class HeroDetailComponent implements OnInit {
   hero: Hero;
-  error: any;
   navigated = false; // true if navigated here
   @Output() close = new EventEmitter();
 
@@ -34,13 +34,12 @@ export class HeroDetailComponent implements OnInit {
                private routeParams: RouteParams) {
   }
 
-  private save() {
+  protected save(): any {
     this.heroService.save(this.hero)
-      .then((hero: Hero) => {
+      .subscribe((hero: Hero) => {
         this.hero = hero;
         this.goBack(hero);
-      })
-      .catch((err: Error) => this.error = err);
+      });
   }
 
   ngOnInit () {
@@ -49,7 +48,7 @@ export class HeroDetailComponent implements OnInit {
     if (id !== null) {
       this.navigated = true;
       this.heroService.getHero(+id)
-        .then((hero: Hero) => this.hero = hero);
+        .subscribe((hero: Hero) => this.hero = hero);
     } else {
       this.navigated = false;
       this.hero = new Hero();
