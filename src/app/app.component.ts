@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from '@angular/router-deprecated';
-import { HeroService } from './hero.service';
+import { HeroService } from './shared/hero.service';
 import { HeroComponent } from './+hero';
 import { DashboardComponent } from './+dashboard';
 import { HeroDetailComponent } from './+hero-detail';

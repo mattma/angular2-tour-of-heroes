@@ -5,7 +5,7 @@ import {
   expect,
   inject
 } from '@angular/core/testing';
-import { HeroService } from './hero.service';
+import { HeroService } from './hero.service.ts';
 
 describe('Hero Service', () => {
   beforeEachProviders(() => [HeroService]);
