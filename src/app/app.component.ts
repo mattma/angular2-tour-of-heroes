@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from '@angular/router-deprecated';
 import { HeroService } from './hero.service';
 import { HeroAppComponent } from './hero.component';
-import { DashboardComponent } from './dashboard.component';
+import { DashboardComponent } from './+dashboard';
 import { HeroDetailComponent } from './hero-detail.component';
 
 @Component({
