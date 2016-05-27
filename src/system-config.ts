@@ -3,11 +3,19 @@
  **********************************************************************************************/
 /** Map relative paths to URLs. */
 const map: any = {
+  '@angular/router-deprecated': 'vendor/@angular/router-deprecated',
+  'angular2-in-memory-web-api': 'vendor/angular2-in-memory-web-api'
 };
 
 /** User packages configuration. */
 const packages: any = {
 };
+
+const pkgs: string[] = [
+  '@angular/router-deprecated',
+  'angular2-in-memory-web-api'
+];
+pkgs.forEach((pkg) => packages[pkg] = { main: 'index' });
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 /***********************************************************************************************
@@ -22,11 +30,9 @@ const barrels: string[] = [
   '@angular/router',
   '@angular/platform-browser',
   '@angular/platform-browser-dynamic',
-  '@angular/router-deprecated',
 
   // Thirdparty barrels.
   'rxjs',
-  'angular2-in-memory-web-api',
 
   // App specific barrels.
   'app',
@@ -47,7 +53,6 @@ System.config({
   map: {
     '@angular': 'vendor/@angular',
     'rxjs': 'vendor/rxjs',
-    'angular2-in-memory-web-api': 'vendor/angular2-in-memory-web-api',
     'main': 'main.js'
   },
   packages: cliSystemConfigPackages
