@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Response } from '@angular/http';
 import { Router } from '@angular/router-deprecated';
 import { Observable } from 'rxjs/Observable';
 import { HeroDetailComponent } from './hero-detail.component';

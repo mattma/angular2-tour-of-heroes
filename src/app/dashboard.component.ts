@@ -33,7 +33,7 @@ export class DashboardComponent implements OnInit {
   getHeroes (): void {
     // cherry-pick four heroes (2nd, 3rd, 4th, and 5th) with slice
     this.heroes = this.heroService.getHeroes()
-      .map((heroes: Array<Hero>) => heroes.slice(1,5));
+      .map((heroes: Array<Hero>) => heroes.slice(1, 5));
   }
 
   gotoDetail (hero: Hero): void {

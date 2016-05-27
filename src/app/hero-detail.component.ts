@@ -1,6 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { RouteParams } from '@angular/router-deprecated';
-import {Observable} from 'rxjs/Observable';
 import { HeroService } from './hero.service';
 import { Hero } from './models/hero';
 
