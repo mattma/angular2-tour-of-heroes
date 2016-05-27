@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router-deprecated';
 import { Observable } from 'rxjs/Observable';
-import { HeroDetailComponent } from '../hero-detail.component';
+import { HeroDetailComponent } from '../+hero-detail';
 import { Hero } from '../models/hero';
 import { HeroService } from '../hero.service';
 import 'rxjs/add/operator/map';

@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { RouteParams } from '@angular/router-deprecated';
-import { HeroService } from './hero.service';
-import { Hero } from './models/hero';
+import { HeroService } from '../hero.service';
+import { Hero } from '../models/hero';
 
 @Component({
   moduleId: module.id,
