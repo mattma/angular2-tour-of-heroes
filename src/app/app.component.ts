@@ -11,9 +11,7 @@ import { HeroDetailComponent } from './hero-detail.component';
   providers: [HeroService, ROUTER_PROVIDERS],
   directives: [...ROUTER_DIRECTIVES],
   template: `
-    <h1>
-      {{title}}
-    </h1>
+    <h1>{{title}}</h1>
     <nav>
       <a [routerLink]="['Dashboard']">Dashboard</a>
       <a [routerLink]="['Heroes']">Heroes</a>    
@@ -23,8 +21,8 @@ import { HeroDetailComponent } from './hero-detail.component';
   styleUrls: ['./app.component.css']
 })
 @RouteConfig([
-  { path: '/heroes', name: 'Heroes', component: HeroAppComponent },
   { path: '/dashboard', name: 'Dashboard', component: DashboardComponent, useAsDefault: true },
+  { path: '/heroes', name: 'Heroes', component: HeroAppComponent },
   { path: '/detail/:id', name: 'HeroDetail', component: HeroDetailComponent }
 ])
 export class AppComponent {

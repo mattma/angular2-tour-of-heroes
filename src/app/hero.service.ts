@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Observable} from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable';
 import { Http, Response, Headers } from '@angular/http';
 import { Hero } from './models/hero';
 import 'rxjs/add/operator/map';
@@ -9,16 +9,7 @@ import 'rxjs/add/operator/mapTo';
 export class HeroService {
   private heroesUrl = 'app/heroes';  // URL to web api
 
-  constructor(private http: Http) { }
-
-  save(hero: Hero): Observable<Hero> {
-    if (hero.id) {
-      return this.put(hero);
-    }
-    return this.post(hero);
-  }
-
-  post(hero: Hero): Observable<Hero> {
+  private post(hero: Hero): Observable<Hero> {
     const headers = new Headers({
       'Content-Type': 'application/json'
     });
@@ -38,11 +29,20 @@ export class HeroService {
       .mapTo(hero);
   }
 
-  delete(hero: Hero) {
-    const headers = new Headers();
-    headers.append('Content-Type', 'application/json');
+  constructor(private http: Http) { }
 
+  save(hero: Hero): Observable<Hero> {
+    if (hero.id) {
+      return this.put(hero);
+    }
+    return this.post(hero);
+  }
+
+  delete(hero: Hero): Observable<any> {
     const url = `${this.heroesUrl}/${hero.id}`;
+    const headers = new Headers();
+
+    headers.append('Content-Type', 'application/json');
 
     return this.http.delete(url, {headers});
   }
