@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router-deprecated';
 import { Observable } from 'rxjs/Observable';
-import { HeroDetailComponent } from './hero-detail.component';
-import { Hero } from './models/hero';
-import { HeroService } from './hero.service';
+import { HeroDetailComponent } from '../hero-detail.component';
+import { Hero } from '../models/hero';
+import { HeroService } from '../hero.service';
 import 'rxjs/add/operator/map';
 
 @Component({
@@ -31,7 +31,7 @@ import 'rxjs/add/operator/map';
   `,
   styleUrls: ['hero.component.css']
 })
-export class HeroAppComponent implements OnInit {
+export class HeroComponent implements OnInit {
   heroes: Observable<Array<Hero>>;
   selectHero: Hero;
   addingHero: boolean = false;

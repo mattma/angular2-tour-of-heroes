@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from '@angular/router-deprecated';
 import { HeroService } from './hero.service';
-import { HeroAppComponent } from './hero.component';
+import { HeroComponent } from './+hero';
 import { DashboardComponent } from './+dashboard';
 import { HeroDetailComponent } from './hero-detail.component';
 
@@ -22,7 +22,7 @@ import { HeroDetailComponent } from './hero-detail.component';
 })
 @RouteConfig([
   { path: '/dashboard', name: 'Dashboard', component: DashboardComponent, useAsDefault: true },
-  { path: '/heroes', name: 'Heroes', component: HeroAppComponent },
+  { path: '/heroes', name: 'Heroes', component: HeroComponent },
   { path: '/detail/:id', name: 'HeroDetail', component: HeroDetailComponent }
 ])
 export class AppComponent {
